@@ -8,8 +8,13 @@ module.exports = function(app) {
     // need access to IP address here
         var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
         var lang = req.headers["accept-language"]
-        var langParseIndex = lang.indexOf(';');
-        lang = lang.slice(0,langParseIndex)
+        var langParseIndexSemi = lang.indexOf(';');
+        var langParseIndexComma = lang.indexOf(',');
+        if (langParseIndexSemi < langParseIndexComma) {
+            lang = lang.slice(0,langParseIndexSemi)
+        } else {
+            lang = lang.slice(0,langParseIndexComma)
+        }
         var opSystem = os.platform() + "; " + os.release(); //'10.8.0'
         var userInfo = { "IP Address": ip, "Language": lang, "Operating System": opSystem }
             res.send(JSON.stringify(userInfo))
