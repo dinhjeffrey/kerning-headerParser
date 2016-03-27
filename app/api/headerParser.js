@@ -2,6 +2,9 @@
 var os = require('os');
 
 
-require('dns').lookup(require('os').hostname(), function (err, add, fam) {
-  console.log('addr: '+add);
-})
+module.exports = function(app) {
+    app.post('/whoami', function (req, res) {
+    // need access to IP address here
+    return req.connection.remoteAddress
+    })
+}
