@@ -5,7 +5,7 @@ var routes = require('./app/routes/index.js');
 var mongoose = require('mongoose');
 var passport = require('passport');
 var session = require('express-session');
-// var api = require('./app/api/headerParser.js')
+var api = require('./app/api/headerParser.js')
 
 var app = express();
 require('dotenv').load();
@@ -28,7 +28,7 @@ app.use(passport.session());
 
 routes(app, passport);
 
-// api(app)
+api(app)
 
 var port = process.env.PORT || 8080;
 app.listen(port,  function () {
