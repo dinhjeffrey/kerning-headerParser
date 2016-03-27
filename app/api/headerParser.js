@@ -9,6 +9,7 @@ module.exports = function(app) {
         var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
         var lang = req.headers["accept-language"]
         var opSystem = os.platform() + "; " + os.release(); //'10.8.0'
-        res.send(JSON.stringify('IP Address: ' + ip'\n''Language: '+ lang'\n''Operating System: ' + opSystem))
-    })
+        var userInfo = { "IP Address": ip, "Language": lang, "Operating System": opSystem }
+            res.send(JSON.stringify(userInfo))
+        })
 }
