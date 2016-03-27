@@ -5,6 +5,6 @@ var os = require('os');
 module.exports = function(app) {
     app.post('/whoami', function (req, res) {
     // need access to IP address here
-    req.connection.remoteAddress
+        req.headers['x-forwarded-for']
     })
 }
